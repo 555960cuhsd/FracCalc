@@ -28,18 +28,20 @@ public class FracCalc {
         Scanner frac = new Scanner(input);
         frac.useDelimiter(" ");
         String fraction1 = frac.next();
+        //validateFraction(fraction1);
         String operator = frac.next();
         String fraction2 = frac.next();
-        validateFraction(fraction2);
+        //validateFraction(fraction2);
 
         return fraction2;
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     public static boolean validateFraction(String fraction){
+        String[] mixSplit = fraction.split("_");
+        int mixNum = Integer.parseInt(mixSplit[0]);
 
-        Scanner frac = new Scanner(fraction);
-        String[] split = fraction.split("/");
+        String[] split = mixSplit[1].split("/");
         int numerator = Integer.parseInt(split[0]);
         int denominator = Integer.parseInt(split[1]);
         return true;
