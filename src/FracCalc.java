@@ -32,21 +32,57 @@ public class FracCalc {
     public static String produceAnswer(String input)
     {
         // TODO: Implement this function to produce the solution to the input
-        Scanner frac = new Scanner(input);
-        frac.useDelimiter(" "); // Add expression.java?
-        String fraction1 = frac.next();
-        validateFraction(fraction1);
-        String operator = frac.next();
-        String fraction2 = frac.next();
-        validateFraction(fraction2);
+        Scanner expression = new Scanner(input);
+        expression.useDelimiter(" "); // Add expression.java?
+        if (!expression.hasNext()){
+            return "ERROR: Input is in an invalid format.";
+        }
 
-        return fraction2;
+        // Initializing the fractions
+        String fraction1 = expression.next();
+        Fraction frac1 = new Fraction(fraction1);
+        if (!validateFraction(fraction1)){
+            return frac1.returnError();
+        }
+
+        if (!expression.hasNext()){return "ERROR: Input is in an invalid format.";} // ERROR CHECK
+        String operator = expression.next();
+        String validOperators = "+-/*";
+        if (!validOperators.contains(operator)){
+            return "ERROR: Invalid operator in input";
+        }
+
+        if (!expression.hasNext()){return "ERROR: Input is in an invalid format.";} // ERROR CHECK
+        String fraction2 = expression.next();
+        Fraction frac2 = new Fraction(fraction2);
+        if (!validateFraction(fraction2)){
+            return frac2.returnError();
+        }
+
+        switch (operator) {
+            case "+":
+                frac1.add(frac2);
+                break;
+            case "-":
+                frac1.subtract(frac2);
+                break;
+            case "/":
+                frac1.divide(frac2);
+                break;
+            case "*":
+                frac1.multiply(frac2);
+                break;
+        }
+        return frac1.returnString();
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     public static boolean validateFraction(String fraction){
         Fraction frac = new Fraction(fraction);
-
+        if (!frac.valid()){
+            return false;
+        }
+        return true;
     }
 
     public String addFraction(String fraction){
@@ -60,4 +96,3 @@ public class FracCalc {
         return "";
     }
 }
-
