@@ -42,7 +42,6 @@ public class Fraction {
             // Initialize the denominator
             try {
                 denominator = Integer.parseInt(split[1]);
-                if (denominator==0){System.out.println("wtf initialize 0");}
             }
             catch (NumberFormatException e) {isValid = false; message = SYNTAX_ERROR+ "this denominator";} // ERROR CHECK
 
@@ -117,10 +116,7 @@ public class Fraction {
         return findGcd(n2, n1 % n2);
     }
     public void simplify(){
-        System.out.println("Pre simplify: " + wholeNum + "_" + numerator + "/" + denominator);
         int gcd = findGcd(Math.abs(numerator), Math.abs(denominator));
-        System.out.println("num gcd: " + (numerator / gcd));
-        System.out.println("den gcd: " + (denominator / gcd));
         numerator /= gcd;
         denominator /= gcd;
 
@@ -128,21 +124,18 @@ public class Fraction {
         if (numerator < 0 && denominator < 0){ // If both num and den are negative, get rid of both negatives
             numerator *= -1;
             denominator *= -1;
-            System.out.println("num neg den neg");
         }
         else if (numerator > 0 && denominator < 0){ // if only the denominator is negative, set the negative to either the mixed number or numerator
             denominator *= -1;
             if (wholeNum != 0){
                 wholeNum *= -1;
             } else {numerator *= -1;}
-            System.out.println("num pos den neg");
         }
         else if (numerator < 0 && denominator > 0){ // if only the numerator is negative, set the negative to the whole number
             if (wholeNum != 0){
                 wholeNum *= -1;
                 numerator *= -1;
             }
-            System.out.println("num neg den pos");
         }
 
         if (numerator >= denominator){
@@ -150,10 +143,8 @@ public class Fraction {
             numerator %= denominator;
         }
         else if (-1*numerator >= denominator){
-            System.out.println("this case");
             wholeNum += Math.abs(numerator) / denominator;
             wholeNum *= -1;
-            System.out.println(""+ wholeNum + "_" + numerator + "/" + denominator);
             numerator %= denominator;
             numerator *= -1;
         }
@@ -162,7 +153,6 @@ public class Fraction {
             wholeNum = numerator;
             numerator = 0;
         }
-        System.out.println("Post simplify: " + wholeNum + "_" + numerator + "/" + denominator);
     }
     public void mixedToNumerator(){
         if (wholeNum>=0){
@@ -174,5 +164,4 @@ public class Fraction {
         }
         wholeNum = 0;
     }
-
 }
