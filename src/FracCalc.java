@@ -60,8 +60,7 @@ public class FracCalc {
         // Initializing the operator
         if (!expression.hasNext()){return "ERROR: Input is in an invalid format.";} // ERROR CHECK
         String operator = expression.next();
-        String validOperators = "+-/*";
-        if (!validOperators.contains(operator)){
+        if (!operator.equals("+") || !operator.equals("-") || !operator.equals("*") || !operator.equals("/")){
             return "ERROR: Invalid operator in input";
         }
 
