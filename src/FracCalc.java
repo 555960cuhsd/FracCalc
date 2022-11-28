@@ -1,17 +1,19 @@
 import java.util.Scanner;
 public class FracCalc {
-
     public static void main(String[] args)
     {
-        // TODO: Read the input from the user and call produceAnswer with an equation
+        // Reads the input from the user and calls produceAnswer with an equation.
+
         Scanner in = new Scanner(System.in);
         while (true){
+            // Initializes the user's fraction input.
             System.out.println("What is your fraction expression? Enter \"quit\" to exit and enter \"help\" for formatting/input help.");
             String fraction = in.nextLine();
-            if (fraction.equals("quit")){
+
+            if (fraction.equals("quit")){ // Quits the program when "quit" is entered.
                 break;
             }
-            if (fraction.equals("help")){
+            if (fraction.equals("help")){ // "Help" message; gives a screen to help the user with the correct formatting.
                 System.out.println("************************************************* FORMATTING HELP *************************************************");
                 System.out.println("Your input should be an expression of two terms:");
                 System.out.println("[Fraction1 {operator} Fraction2]");
